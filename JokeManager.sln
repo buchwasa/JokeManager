@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JokeManager", "JokeManager\JokeManager.csproj", "{42E9D711-3094-4D70-BEAE-C4B05467CF2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMain", "TestMain\TestMain.csproj", "{D8600C7F-2B1D-46AC-BED5-429038B7F984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JokeManagerGUI", "JokeManagerGUI\JokeManagerGUI.csproj", "{5FB079B4-132F-4224-814F-38C83741B982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D8600C7F-2B1D-46AC-BED5-429038B7F984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8600C7F-2B1D-46AC-BED5-429038B7F984}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8600C7F-2B1D-46AC-BED5-429038B7F984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FB079B4-132F-4224-814F-38C83741B982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB079B4-132F-4224-814F-38C83741B982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FB079B4-132F-4224-814F-38C83741B982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FB079B4-132F-4224-814F-38C83741B982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
