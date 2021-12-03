@@ -17,9 +17,27 @@ namespace JokeManagerNamespace
             Config.password = "Qbert42Fish";
             Config.server = "IL-Server-002.uccc.uc.edu\\Mssqlserver2019";
             Config.database = "3045Fall2021FinalProject";
-            status = Utils.ExecuteNonQuery($"INSERT INTO tJoke(UCID, Joke) VALUES( '{UCID}', '{joke}')", System.Data.CommandType.Text,null, null);
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@UCID", UCID));
+            parameters.Add(new SqlParameter("@Joke", joke));
+            status = Utils.ExecuteNonQuery("INSERT INTO tJoke(UCID, Joke) VALUES(@UCID, @Joke)", System.Data.CommandType.Text, null, parameters);
 
             return status;
+        }
+
+        /// <summary>
+        /// Method that gets all the jokes in the database
+        /// </summary>
+        /// <returns>A dictionary containing UCIDs and Jokes</returns>
+        public static Dictionary<string, string> GetJokes()
+        {
+            Config.login = "3045Fall2021FinalProjectLogin";
+            Config.password = "Qbert42Fish";
+            Config.server = "IL-Server-002.uccc.uc.edu\\Mssqlserver2019";
+            Config.database = "3045Fall2021FinalProject";
+
+            return Utils.ExecuteReader("SELECT UCID, Joke FROM tJoke ORDER BY UCID ASC", System.Data.CommandType.Text, "UCID", "Joke");
         }
     }
     class Utils
@@ -98,6 +116,45 @@ namespace JokeManagerNamespace
             }
             finally { }
             return status;
+        }
+
+        /// <summary>
+        /// Executes a reader to gather all the rows returned in a select statement
+        /// </summary>
+        /// <param name="pSQL">The SQL to be executed</param>
+        /// <param name="pCommandType">Text or Stored Procedure</param>
+        /// <returns>A dictionary that contains the results</returns>
+        public static Dictionary<string, string> ExecuteReader(string pSQL, System.Data.CommandType pCommandType, string dictKey, string dictValue)
+        {
+            Dictionary<string, string> results = new Dictionary<string, string>();
+            try
+            {
+                CheckConnection();
+                SqlCommand objCmd = Config.myConnection.CreateCommand();
+                objCmd.CommandText = pSQL;
+                objCmd.CommandType = pCommandType;      // The default is 'text', which implies an SQL string
+                objCmd.Parameters.Clear();          // Just in case we used any the last time we called this
+
+                SqlDataReader reader = objCmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    results.Add(reader[dictKey].ToString(), reader[dictValue].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    Console.WriteLine(DateTime.Now + " ExecuteReader() : " + ex.Message + " : " + pSQL);
+                }
+                catch (Exception ex1)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            finally { }
+
+            return results;
         }
     }
     class Config

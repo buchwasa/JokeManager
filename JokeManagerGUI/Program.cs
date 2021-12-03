@@ -1,9 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/**
+ * Drew Buchwald
+ * buchwasa@mail.uc.edu
+ * Final Project
+ * Course: IT3045 Fall 2021
+ * Due Date: 12/7/2021
+ * Description: Main class to initialize Program
+ */
 namespace JokeManagerGUI
 {
     internal static class Program
